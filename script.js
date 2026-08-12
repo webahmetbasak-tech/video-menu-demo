@@ -33,6 +33,15 @@
        tags        : (opsiyonel) detay sayfasında rozetler
      =================================================================== */
 
+  /* -------------------------------------------------------------------
+     QR KODUN İŞARET EDECEĞİ ADRES
+     Sabit verildiği için, sayfa bilgisayardan (file://) veya yerel
+     sunucudan açılsa bile QR daima yayındaki gerçek adresi gösterir —
+     yani menüyü dizüstünde açıp müşteriye telefondan okutabilirsiniz.
+     Boş bırakılırsa ('') sayfanın kendi adresi kullanılır.
+     ------------------------------------------------------------------- */
+  var SITE_URL = 'https://webahmetbasak-tech.github.io/video-menu-demo/';
+
   var CATEGORIES = [
     { id: 'kahvalti',  name: 'Kahvaltı' },
     { id: 'ana-yemek', name: 'Ana Yemekler' },
@@ -1554,6 +1563,7 @@
 
   /* --- QR modalı ---------------------------------------------------- */
   function currentURL() {
+    if (SITE_URL) return SITE_URL;
     return window.location.href.split('#')[0];
   }
 
@@ -1580,9 +1590,11 @@
       canvas.style.height = px + 'px';
       canvas.setAttribute('aria-label', 'QR kod: ' + url);
 
-      $('#qrHint').textContent = (window.location.protocol === 'file:')
-        ? 'Sayfa bilgisayardan (file://) açıldığı için bu kod yerel bir dosya adresini gösterir. Siteyi yayına aldığınızda kod otomatik olarak gerçek adresi içerir.'
-        : 'Bu kodu masa kartlarına bastırabilirsiniz — menüye doğrudan bu sayfadan ulaşılır.';
+      $('#qrHint').textContent = SITE_URL
+        ? 'Bu kodu masa kartlarına bastırabilirsiniz — nereden açılırsa açılsın daima yayındaki menüye götürür.'
+        : (window.location.protocol === 'file:'
+            ? 'Sayfa bilgisayardan (file://) açıldığı için bu kod yerel bir dosya adresini gösterir. Siteyi yayına aldığınızda kod otomatik olarak gerçek adresi içerir.'
+            : 'Bu kodu masa kartlarına bastırabilirsiniz — menüye doğrudan bu sayfadan ulaşılır.');
 
       built = true;
     }

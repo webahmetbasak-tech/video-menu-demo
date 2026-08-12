@@ -21,6 +21,7 @@ Framework yok, backend yok, veritabanı yok, build adımı yok, npm bağımlıl�
 - [Menüyü düzenleme](#menüyü-düzenleme)
 - [Video ekleme](#video-ekleme)
 - [Görsel ekleme](#görsel-ekleme)
+- [QR kodu](#qr-kodu)
 - [Açılış (intro) videosu](#açılış-intro-videosu)
 - [Performans mimarisi](#performans-mimarisi)
 - [Erişilebilirlik](#erişilebilirlik)
@@ -233,6 +234,25 @@ Görsel bulunamazsa nötr koyu bir dolgu gösterilir — kırık görsel ikonu *
 
 ---
 
+## QR kodu
+
+QR kod **hiçbir kütüphane veya CDN kullanmadan** üretilir — encoder `script.js`
+içinde yazılıdır (byte modu, hata düzeltme seviyesi M, sürüm 1–10). Bu sayede
+internet olmadan da çalışır ve dışarıya tek bir istek gitmez.
+
+Kodun işaret ettiği adres `script.js` başındaki tek satırla belirlenir:
+
+```js
+var SITE_URL = 'https://webahmetbasak-tech.github.io/video-menu-demo/';
+```
+
+Sabit olduğu için, menüyü dizüstü bilgisayarda `file://` ile açıp müşteriye
+telefondan okutabilirsiniz — QR yine yayındaki gerçek adrese gider.
+Boş bırakırsanız (`''`) sayfanın kendi adresi kullanılır.
+
+Modaldeki **PNG indir** düğmesi kodu 1024 px genişliğinde kaydeder; masa
+kartı veya afiş baskısı için yeterlidir.
+
 ## Açılış (intro) videosu
 
 Sayfa açılır → `assets/videos/intro.mp4` oynar → biter → menü belirir.
@@ -387,8 +407,9 @@ Dosya adının ürünün `id` değeriyle birebir aynı olduğundan emin olun
 Dosya büyük olabilir veya `faststart` uygulanmamış olabilir. Yukarıdaki
 `ffmpeg` komutunu çalıştırın.
 
-**QR kod yerel dosya yolu gösteriyor.**
-Sayfayı `file://` ile açtığınız içindir. Yayına aldıktan sonra otomatik düzelir.
+**QR kod yanlış adresi gösteriyor.**
+`script.js` başındaki `SITE_URL` değerini güncelleyin — aşağıdaki
+[QR kodu](#qr-kodu) bölümüne bakın.
 
 **GitHub Pages'te sayfa boş / stil yok.**
 `assets` klasörünün tamamının yüklendiğinden ve `Folder` ayarının `/ (root)`
