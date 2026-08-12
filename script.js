@@ -147,14 +147,15 @@
       tags: ['Günlük üretim', 'Bask usulü']
     },
     {
-      id: 'cikolatali-mousse',
-      name: 'Çikolatalı Mousse',
+      /* Kapak görseli gerçek fotoğraf (.webp, 21 KB). */
+      id: 'sahika',
+      name: 'Şahika',
       category: 'Tatlılar',
       price: '220 TL',
-      description: '%70 bitter çikolatadan hazırlanan ipeksi mousse, üzerinde kakao tozu ve altın varak dokunuşu.',
-      image: 'assets/images/cikolatali-mousse.svg',
-      video: 'assets/videos/cikolatali-mousse.mp4',
-      tags: ['%70 bitter', 'Glutensiz']
+      description: 'Çilek · muz · çıtır corn flakes · sütlü Belçika çikolatası veya beyaz çikolata ile',
+      image: 'assets/images/sahika.webp',
+      video: 'assets/videos/sahika.mp4',
+      tags: ['Belçika çikolatası', 'Sütlü veya beyaz']
     },
     {
       id: 'profiterol',
