@@ -81,6 +81,18 @@
       tags: ['Taş fırın', 'Trabzon usulü', 'Elde açma']
     },
     {
+      /* Kapak görseli gerçek fotoğraf — 1,8 MB PNG'den 188 KB JPEG'e indirildi. */
+      id: 'eli-bogrunde',
+      name: 'Eli Böğründe Dana',
+      category: 'Ana Yemekler',
+      price: '780 TL',
+      description: 'Sacda pişirilen dana kuşbaşı; közlenmiş biber, domates ve karamelize soğan ile. Yanında turşu, yoğurt ve mevsim yeşillikleri.',
+      image: 'assets/images/eli-bogrunde.jpg',
+      video: 'assets/videos/eli-bogrunde.mp4',
+      badge: 'Paylaşımlık',
+      tags: ['Dana kuşbaşı', 'Sacda', 'Meze ve turşu ile']
+    },
+    {
       id: 'antrikot',
       name: 'Izgara Antrikot',
       category: 'Ana Yemekler',
