@@ -144,7 +144,8 @@
       category: 'Tatlılar',
       price: '250 TL',
       description: 'Yüksek ısıda karamelize edilmiş, dışı yanık içi akışkan Bask usulü cheesecake. Günlük üretim.',
-      image: 'assets/images/san-sebastian.svg',
+      /* Kapak görseli gerçek fotoğraf (.webp, 31 KB). */
+      image: 'assets/images/san-sebastian.webp',
       video: 'assets/videos/san-sebastian.mp4',
       badge: 'Efsane',
       tags: ['Günlük üretim', 'Bask usulü']
@@ -176,6 +177,7 @@
       price: '320 TL',
       description: 'Şefin imzasını taşıyan, servis anında hazırlanan özel tabak. İçeriği mevsime göre değişir.',
       image: 'assets/images/signature-tatli.svg',
+      video: 'assets/videos/signature-tatli.mp4',
       badge: 'Şef Önerisi',
       tags: ['Masada hazırlanır', 'Mevsimlik']
     },
@@ -188,7 +190,9 @@
       price: '280 TL',
       description: 'Taze çilek, beyaz ve sütlü çikolata, antep fıstığı ve dondurma topu ile servis edilen sıcak waffle.',
       image: 'assets/images/cilekli-waffle.svg',
-      video: 'assets/videos/cilekli-waffle.mp4',
+      /* video: dosya İnci Signature Dessert için kullanıldı. Kendi videosu
+         assets/videos/cilekli-waffle.mp4 olarak eklendiğinde bu satırı aç:
+         video: 'assets/videos/cilekli-waffle.mp4', */
       badge: 'Yeni',
       tags: ['Dondurma ile', 'Paylaşımlık']
     },
@@ -1029,6 +1033,13 @@
     opts = opts || {};
     if (!product) return;
 
+    /* Başka bir ürün açılıyor: oynayan HER video burada durur.
+       Bunu playSheetVideo'ya bırakamayız — videosuz ürünlerde o yol hiç
+       çalışmaz ve önceki ürünün videosu arka planda dönmeye devam ederdi.
+       (Genişlet düğmesi currentTime'ı bu çağrıdan ÖNCE okur, o yüzden
+       kaldığı yerden devam özelliği bozulmaz.) */
+    stopActive();
+
     lastFocused = document.activeElement;
     sheetState.product = product;
     sheetState.open = true;
@@ -1553,6 +1564,7 @@
 
     $$('[data-action="open-qr"]').forEach(function (btn) {
       btn.addEventListener('click', function () {
+        stopActive();                 // ekranı kaplayan modal: video arkada dönmesin
         lastFocused = document.activeElement;
         render();
         openOverlay(overlay, $('#qrModal'));
