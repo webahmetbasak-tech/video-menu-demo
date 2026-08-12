@@ -91,6 +91,17 @@
       tags: ['300 gr', 'Dinlendirilmiş et', 'Odun ateşi']
     },
     {
+      /* Kapak görseli gerçek fotoğraf — 2 MB'lık PNG'den 202 KB JPEG'e indirildi. */
+      id: 'cokertme-kebabi',
+      name: 'Çökertme Kebabı',
+      category: 'Ana Yemekler',
+      price: '520 TL',
+      description: 'Dana bonfile dilimleri · kibrit patates · domates sosu · yoğurt · ızgara domates ve biber',
+      image: 'assets/images/cokertme-kebabi.jpg',
+      badge: 'Bodrum Usulü',
+      tags: ['Dana bonfile', 'Bodrum usulü']
+    },
+    {
       id: 'levrek',
       name: 'Fırında Levrek',
       category: 'Ana Yemekler',
@@ -99,12 +110,10 @@
       image: 'assets/images/levrek.svg',
       tags: ['Günlük balık', 'Glutensiz']
     },
-
-    /* ---------------- Burger & Sandviç ---------------- */
     {
       id: 'inci-burger',
       name: 'İnci Signature Burger',
-      category: 'Burger & Sandviç',
+      category: 'Ana Yemekler',
       price: '480 TL',
       description: 'Çift katlı dana köfte, füme cheddar, karamelize soğan ve şefin özel sosu; brioche ekmek arasında.',
       image: 'assets/images/inci-burger.svg',
@@ -112,6 +121,8 @@
       badge: 'En Çok Sipariş',
       tags: ['180 gr × 2', 'Brioche', 'Elde şekillendirilmiş']
     },
+
+    /* ---------------- Burger & Sandviç ---------------- */
     {
       id: 'club-sandvic',
       name: 'Tavuklu Club Sandviç',
