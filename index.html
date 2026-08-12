@@ -17,8 +17,16 @@
 <link rel="apple-touch-icon" href="assets/images/san-sebastian.svg">
 <link rel="stylesheet" href="style.css">
 
-<!-- Intro yalnızca JavaScript varsa gösterilir; aksi hâlde menü doğrudan açılır. -->
-<script>document.documentElement.className += ' js intro-active';</script>
+<!-- Açılış videosu kararı, sayfa çizilmeden ÖNCE verilir:
+     · JavaScript kapalıysa intro hiç gösterilmez, menü doğrudan açılır.
+     · Bu oturumda daha önce izlendiyse tekrar gösterilmez (ve indirilmez). -->
+<script>
+(function () {
+  var izlendi = false;
+  try { izlendi = window.sessionStorage.getItem('siyah-inci-intro') === '1'; } catch (e) { /* gizli mod */ }
+  document.documentElement.className += ' js' + (izlendi ? '' : ' intro-active');
+})();
+</script>
 </head>
 <body>
 
@@ -26,19 +34,25 @@
 
 <!-- ============ AÇILIŞ (INTRO) VİDEOSU ============ -->
 <div class="intro" id="intro" role="dialog" aria-label="Açılış videosu">
-  <video id="introVideo"
-         class="intro__video"
-         src="assets/videos/intro.mp4"
-         preload="auto"
-         autoplay muted playsinline webkit-playsinline
-         disablepictureinpicture
-         aria-hidden="true"></video>
-
   <span class="intro__vignette" aria-hidden="true"></span>
 
-  <div class="intro__brand">
-    <p class="intro__name">SIYAH İNCİ</p>
-    <p class="intro__sub">İnci Lounge</p>
+  <!-- Logo videosu ortalanmış bir sahnede: hiçbir kenarı kırpılmaz. -->
+  <div class="intro__center">
+    <div class="intro__stage">
+      <!-- src bilerek data-src: oturumda ikinci açılışta video HİÇ indirilmesin. -->
+      <video id="introVideo"
+             class="intro__video"
+             data-src="assets/videos/intro.mp4"
+             preload="auto"
+             muted playsinline webkit-playsinline
+             disablepictureinpicture
+             aria-hidden="true"></video>
+    </div>
+
+    <div class="intro__brand">
+      <p class="intro__name">SIYAH İNCİ</p>
+      <p class="intro__sub">İnci Lounge</p>
+    </div>
   </div>
 
   <button class="intro__skip" id="introSkip" type="button">

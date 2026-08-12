@@ -235,13 +235,39 @@ Görsel bulunamazsa nötr koyu bir dolgu gösterilir — kırık görsel ikonu *
 
 ## Açılış (intro) videosu
 
-Sayfa açılır → `assets/videos/intro.mp4` tam ekran oynar → biter → menü belirir.
+Sayfa açılır → `assets/videos/intro.mp4` oynar → biter → menü belirir.
 
-Kullanıcı asla burada takılı kalmaz; **üç ayrı güvenlik ağı** vardır:
+**Oturumda yalnızca bir kez** oynar. Aynı sekmede sayfayı yenilerseniz intro
+gösterilmez ve video **hiç indirilmez** (`sessionStorage` ile hatırlanır).
+Yeni sekme veya yeni ziyaret = intro yeniden oynar.
+
+### Ayarlar
+
+`script.js` içinde, intro bölümünün başında:
+
+```js
+var INTRO_SPEED  = 1.5;    // oynatma hızı (4,0 sn'lik video ≈ 2,7 sn sürer)
+var INTRO_MAX_MS = 3200;   // ekranda kalabileceği en uzun süre
+```
+
+Daha hızlı istersen `INTRO_SPEED` değerini artır; her açılışta oynamasını
+istersen `INTRO_KEY` ile ilgili iki fonksiyonu boşalt.
+
+### Kırpma yok
+
+Kaynak video 16:9'dur ve içeriği kareyi kenardan kenara doldurur *(ölçüldü:
+parlak içerik genişliğin %98–100'ünü kaplıyor)*. Bu yüzden dikey telefonda
+ekranı doldurmak için kırpmak logonun yanlarını keserdi. Video bunun yerine
+**ortalanmış, 16:9, altın çizgili bir sahnede** `object-fit: contain` ile
+gösterilir — hiçbir kenarı kesilmez. Sahne ekran genişliğinin ~%92'sini kaplar.
+
+### Güvenlik ağları
+
+Kullanıcı asla burada takılı kalmaz:
 
 1. **Atla** düğmesi, ekrana dokunma, `Esc` / `Enter` / `Boşluk`
-2. 2,6 saniye içinde oynatma başlamazsa otomatik geçilir *(tarayıcı autoplay engeli)*
-3. 9 saniyelik sert üst sınır *(dosya bozuk veya çok yavaşsa)*
+2. 2 saniye içinde oynatma başlamazsa otomatik geçilir *(tarayıcı autoplay engeli)*
+3. `INTRO_MAX_MS` sert üst sınırı *(dosya bozuk veya çok yavaşsa)*
 
 Ayrıca:
 

@@ -548,6 +548,19 @@
      Video dosyası yoksa `error` anında geçilir.
      =================================================================== */
 
+  /* --- ayarlanabilir intro değerleri --- */
+  var INTRO_SPEED  = 1.5;    // oynatma hızı (4,0 sn'lik video ≈ 2,7 sn sürer)
+  var INTRO_MAX_MS = 3200;   // ekranda kalabileceği en uzun süre
+  var INTRO_KEY    = 'siyah-inci-intro';
+
+  function introIzlendiIsaretle() {
+    try { window.sessionStorage.setItem(INTRO_KEY, '1'); } catch (e) { /* gizli mod */ }
+  }
+
+  function introDahaOnceIzlendi() {
+    try { return window.sessionStorage.getItem(INTRO_KEY) === '1'; } catch (e) { return false; }
+  }
+
   function initIntro(onDone) {
     var intro = $('#intro');
     var video = $('#introVideo');
@@ -555,19 +568,23 @@
     var finished = false;
     var timers = [];
 
+    /* Introyu hiç göstermeden menüye geç. Video `data-src` ile beklediği
+       için bu yolda TEK BAYT bile indirilmez. */
     function release() {
       html.classList.remove('intro-active');
       if (intro) intro.hidden = true;
       if (typeof onDone === 'function') onDone();
     }
 
-    /* JS yok sayılamaz ama video/kaplama yoksa yine de menüyü aç */
     if (!intro || !video) { release(); return; }
 
-    /* hareket azaltma tercihi: introyu hiç gösterme */
+    /* bu oturumda zaten izlendi → doğrudan menü */
+    if (introDahaOnceIzlendi()) { release(); return; }
+
+    /* hareket azaltma tercihi → introyu atla */
     if (prefersReducedMotion) {
-      try { video.pause(); video.removeAttribute('src'); video.load(); } catch (e) {}
       finished = true;
+      introIzlendiIsaretle();
       release();
       return;
     }
@@ -576,6 +593,7 @@
       if (finished) return;
       finished = true;
 
+      introIzlendiIsaretle();
       timers.forEach(function (t) { window.clearTimeout(t); });
       html.classList.remove('intro-active');
       intro.classList.add('is-done');
@@ -588,7 +606,7 @@
           video.removeAttribute('src');
           video.load();
         } catch (e) { /* yoksay */ }
-      }, 720);
+      }, 520);
 
       if (typeof onDone === 'function') onDone();
     }
@@ -632,10 +650,18 @@
     /* güvenlik ağı 2: autoplay engellenirse bekletme */
     timers.push(window.setTimeout(function () {
       if (video.paused || !video.currentTime) finish();
-    }, 2600));
+    }, 2000));
 
-    /* güvenlik ağı 3: sert üst sınır */
-    timers.push(window.setTimeout(finish, 9000));
+    /* güvenlik ağı 3 / süre sınırı: video uzun olsa da bu süreden fazla kalmaz */
+    timers.push(window.setTimeout(finish, INTRO_MAX_MS));
+
+    /* kaynağı şimdi bağla ve hızlandırılmış oynat */
+    video.src = video.getAttribute('data-src');
+    try { video.playbackRate = INTRO_SPEED; } catch (e) { /* yoksay */ }
+    video.addEventListener('loadedmetadata', function once() {
+      video.removeEventListener('loadedmetadata', once);
+      try { video.playbackRate = INTRO_SPEED; } catch (e) { /* yoksay */ }
+    });
 
     safePlay(video);
   }
