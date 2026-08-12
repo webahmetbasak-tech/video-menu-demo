@@ -55,12 +55,14 @@
   var PRODUCTS = [
     /* ---------------- Kahvaltı ---------------- */
     {
-      id: 'serpme-kahvalti',
-      name: 'Serpme Kahvaltı Tabağı',
+      /* Kapak görseli gerçek fotoğraf (.webp, 82 KB). */
+      id: 'inci-serpme',
+      name: 'İnci Serpme',
       category: 'Kahvaltı',
       price: '680 TL',
-      description: 'Yöresel peynirler, köy yumurtası, ev reçelleri, zeytin çeşitleri ve sıcak simit ile iki kişilik serpme kahvaltı.',
-      image: 'assets/images/serpme-kahvalti.svg',
+      description: 'Yöresel peynirler, sahanda yumurta, sucuk, bal–kaymak, ev reçelleri, zeytin çeşitleri, taze meyve, sıcak börek ve pişi. Sınırsız çay ile.',
+      image: 'assets/images/inci-serpme.webp',
+      video: 'assets/videos/inci-serpme.mp4',
       badge: 'İki Kişilik',
       tags: ['2 kişilik', 'Sınırsız çay', '09:00 – 13:00']
     },
