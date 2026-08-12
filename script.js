@@ -127,14 +127,15 @@
 
     /* ---------------- Burger & Sandviç ---------------- */
     {
-      id: 'club-sandvic',
-      name: 'Tavuklu Club Sandviç',
+      /* Kapak görseli gerçek fotoğraf (.webp, 34 KB). */
+      id: 'barbeku-soslu-pilic',
+      name: 'Barbekü Soslu Piliç',
       category: 'Burger & Sandviç',
       price: '340 TL',
-      description: 'Izgara tavuk göğsü, çıtır pastırma, domates ve marul; kızarmış tost ekmeği ve elde kesilmiş patates ile.',
-      image: 'assets/images/club-sandvic.svg',
-      video: 'assets/videos/club-sandvic.mp4',
-      tags: ['Patates kızartması ile', 'Mangal ateşinde']
+      description: 'Barbekü sosunda marine edilmiş ızgara piliç, közlenmiş sebzeler ve elde kesilmiş patates eşliğinde.',
+      image: 'assets/images/barbeku-soslu-pilic.webp',
+      video: 'assets/videos/barbeku-soslu-pilic.mp4',
+      tags: ['Mangal ateşinde', 'Patates kızartması ile']
     },
 
     /* ---------------- Tatlılar ---------------- */
@@ -169,6 +170,18 @@
       description: 'Ev yapımı çikolata sosunda yüzen kremalı profiterol topları, üzerinde çıtır fındık kırığı.',
       image: 'assets/images/profiterol.svg',
       tags: ['Sıcak çikolata sosu']
+    },
+    {
+      /* Kapak görseli gerçek fotoğraf — 263 KB PNG'den 46 KB JPEG'e indirildi. */
+      id: 'inci-special-waffle',
+      name: 'İnci Special Waffle',
+      category: 'Tatlılar',
+      price: '320 TL',
+      description: 'Çift katlı özel waffle; beyaz ve sütlü çikolata, mevsim meyveleri, antep fıstığı ve dondurma topu ile.',
+      image: 'assets/images/inci-special-waffle.jpg',
+      video: 'assets/videos/inci-special-waffle.mp4',
+      badge: 'İnci Özel',
+      tags: ['Paylaşımlık', 'Dondurma ile']
     },
     {
       id: 'signature-tatli',
