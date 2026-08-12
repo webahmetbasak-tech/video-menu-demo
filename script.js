@@ -98,6 +98,7 @@
       price: '520 TL',
       description: 'Dana bonfile dilimleri · kibrit patates · domates sosu · yoğurt · ızgara domates ve biber',
       image: 'assets/images/cokertme-kebabi.jpg',
+      video: 'assets/videos/cokertme-kebabi.mp4',
       badge: 'Bodrum Usulü',
       tags: ['Dana bonfile', 'Bodrum usulü']
     },
@@ -117,7 +118,9 @@
       price: '480 TL',
       description: 'Çift katlı dana köfte, füme cheddar, karamelize soğan ve şefin özel sosu; brioche ekmek arasında.',
       image: 'assets/images/inci-burger.svg',
-      video: 'assets/videos/inci-burger.mp4',
+      /* video: dosya Çökertme Kebabı için kullanıldı. Kendi videosu
+         assets/videos/inci-burger.mp4 olarak eklendiğinde alttaki satırı aç:
+         video: 'assets/videos/inci-burger.mp4', */
       badge: 'En Çok Sipariş',
       tags: ['180 gr × 2', 'Brioche', 'Elde şekillendirilmiş']
     },
