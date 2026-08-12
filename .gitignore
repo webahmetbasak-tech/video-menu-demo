@@ -1,0 +1,10 @@
+﻿# gecici test dosyalari
+__t-*.html
+
+# arac klasoru
+.claude/
+
+# isletim sistemi
+Thumbs.db
+.DS_Store
+desktop.ini
